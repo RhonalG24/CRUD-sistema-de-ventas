@@ -1,0 +1,13 @@
+html{
+    font-size: 16px;
+}
+
+.boton{
+    width: 30vw;
+    display: block;
+}
+
+.full-heigth{
+    height: 80vh;
+}
+
