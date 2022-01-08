@@ -4,9 +4,6 @@ Class Conexion{
     private $user = "root";
     private $pass = "";
     private $dbname = "ventas2162";
-    // private $user = "id17902308_root";
-    // private $pass = "kxp8Ncp-NwQ28dps";
-    // private $dbname = "id17902308_ventas2162";
     private $conexion; //acá se guarda la instancia de conexion
 
     public function __construct()

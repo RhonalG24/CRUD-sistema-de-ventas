@@ -2,6 +2,8 @@
 
 use CLiente as GlobalCLiente;
 include_once("../conexion.php");
+// include_once($_SERVER['DOCUMENT_ROOT']."/conexion.php");
+
 
 Class Cliente{
 
@@ -20,7 +22,8 @@ Class Cliente{
     public static function getClientes(){
      try{   
         $conexionBD = new Conexion();
-        $sql = $conexionBD->getConexion()->prepare(query: "SELECT * FROM cliente");
+        // ->prepare(query: "SELECT * FROM cliente")
+        $sql = $conexionBD->getConexion()->prepare("SELECT * FROM cliente");
         $sql->execute();
         }catch(Exception $e){
             echo("Ha ocurrido un error ".$e);

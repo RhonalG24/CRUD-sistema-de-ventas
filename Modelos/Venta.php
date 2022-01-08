@@ -1,5 +1,7 @@
 <?php
 include_once("../conexion.php");
+// include_once($_SERVER['DOCUMENT_ROOT']."/conexion.php");
+
 
 Class Venta{
     public static function crear($producto_id,$cliente_id,$importe,$stock){
@@ -17,14 +19,15 @@ Class Venta{
     public static function getVentas(){
         try{   
            $conexionBD = new Conexion();
-           $sql = $conexionBD->getConexion()->prepare(query: "SELECT * FROM venta");
+        //    ->prepare(query: "SELECT * FROM venta")
+           $sql = $conexionBD->getConexion()->prepare("SELECT * FROM venta");
            $sql->execute();
            }catch(Exception $e){
                echo("Ha ocurrido un error ".$e);
                return null;
            }
-   
-           return $sql->fetchAll(mode:PDO::FETCH_ASSOC);
+        //    ->fetchAll(mode:PDO::FETCH_ASSOC)
+           return $sql->fetchAll(PDO::FETCH_ASSOC);
        }
     
        public static function eliminar($id){

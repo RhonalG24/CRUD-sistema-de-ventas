@@ -3,6 +3,8 @@
 use Producto as GlobalProducto;
 
 include_once("../conexion.php");
+// include_once($_SERVER['DOCUMENT_ROOT']."/conexion.php");
+
 
 Class Producto{
     
@@ -27,8 +29,8 @@ Class Producto{
             echo("Ha ocurrido un error ".$e);
             return null;
         }
-
-        return $sql->fetchAll(mode:PDO::FETCH_ASSOC);
+        // ->fetchAll(mode:PDO::FETCH_ASSOC)
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function editar($id, $nombre,$precio,$stock){
