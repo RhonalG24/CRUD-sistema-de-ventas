@@ -3,21 +3,22 @@ include_once("../Modelos/Cliente.php");
 
 if(isset($_GET)){
     $id = $_GET['id'];
-    $clientes = Cliente::getClientes();
-    $registro;
+    $cliente = Cliente::getCliente($id);
+    // print_r($cliente);
 
-    foreach($clientes as $cliente){
-        if($cliente['id_cliente'] == $id){
-            $registro['id'] = $cliente['id_cliente'];
-            $registro['nombre'] = $cliente['nombre'];
-            $registro['dni'] = $cliente['dni'];
-        }
-    }
+    //obtener cliente trayendo todos los clientes de la tabla
+    // $clientes = Cliente::getClientes();
+    // $registro;
 
-    
+    // foreach($clientes as $cliente){
+    //     if($cliente['id_cliente'] == $id){
+    //         $registro['id'] = $cliente['id_cliente'];
+    //         $registro['nombre'] = $cliente['nombre'];
+    //         $registro['dni'] = $cliente['dni'];
+    //     }
+    // }
+
     // print_r($registro);
-
-
 }
 
 if(isset($_POST['update'])){
@@ -45,10 +46,10 @@ require_once("Plantillas/templateHeader.php");
     
     <form action="formEditCliente.php?id=<?php echo $_GET['id']?>" method="POST">
         <div class="mb-3">
-            <input type="text" class="form-control" name="nombre" value="<?=$registro['nombre']?>" placeholder="Edita el nombre" autofocus required>
+            <input type="text" class="form-control" name="nombre" value="<?=$cliente['nombre']?>" placeholder="Edita el nombre" autofocus required>
         </div>
         <div class="mb-3">    
-            <input type="number" class="form-control" name="dni" value="<?=$registro['dni']?>" placeholder="Edita el DNI" required></div>
+            <input type="number" class="form-control" name="dni" value="<?=$cliente['dni']?>" placeholder="Edita el DNI" required></div>
         
             <button type="submit" name="update" class="btn btn-success" onclick="confirm('¿Está seguro de que desea editar el cliente?')">Editar</button>
         <a href="viewClientes.php" class="btn btn-warning">Volver</a>

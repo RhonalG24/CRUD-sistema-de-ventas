@@ -23,7 +23,7 @@ Class Producto{
     public static function getProductos(){
      try{   
         $conexionBD = new Conexion();
-        $sql = $conexionBD->getConexion()->prepare(query: "SELECT * FROM producto");
+        $sql = $conexionBD->getConexion()->prepare("SELECT * FROM producto");
         $sql->execute();
         }catch(Exception $e){
             echo("Ha ocurrido un error ".$e);
@@ -31,6 +31,19 @@ Class Producto{
         }
         // ->fetchAll(mode:PDO::FETCH_ASSOC)
         return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getProducto($id){
+        try{
+            $conexionBD = new Conexion();
+            $query = "SELECT * FROM producto WHERE id_producto = ?";
+            $sql = $conexionBD->getConexion()->prepare($query);
+            $sql->execute(array($id));
+            return $sql->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            echo("Ha ocurrido un error ".$e);
+            return null;
+        }
     }
 
     public static function editar($id, $nombre,$precio,$stock){

@@ -3,17 +3,22 @@ include_once("../Modelos/Producto.php");
 
 if(isset($_GET)){
     $id = $_GET['id'];
-    $productos = Producto::getProductos();
-    $registro;
+    $producto = Producto::getProducto($id);
 
-    foreach($productos as $producto){
-        if($producto['id_producto'] == $id){
-            $registro['id'] = $producto['id_producto'];
-            $registro['nombre'] = $producto['nombre'];
-            $registro['precio'] = $producto['precio'];
-            $registro['stock'] = $producto['stock'];
-        }
-    }
+    // print_r($producto);
+
+    //obtener un producto por id usando getProductos (trayendo todos los clientes de la tabla)
+    // $productos = Producto::getProductos();
+    // $registro;
+
+    // foreach($productos as $producto){
+    //     if($producto['id_producto'] == $id){
+    //         $registro['id'] = $producto['id_producto'];
+    //         $registro['nombre'] = $producto['nombre'];
+    //         $registro['precio'] = $producto['precio'];
+    //         $registro['stock'] = $producto['stock'];
+    //     }
+    // }
 
 
     // print_r($registro);
@@ -45,13 +50,13 @@ require_once("Plantillas/templateHeader.php");
     
     <form action="formEditProducto.php?id=<?php echo $_GET['id']?>" method="POST">
         <div class="mb-3">
-            <input type="text" class="form-control" name="nombre" value="<?=$registro['nombre']?>" placeholder="Edita el nombre" autofocus required>
+            <input type="text" class="form-control" name="nombre" value="<?=$producto['nombre']?>" placeholder="Edita el nombre" autofocus required>
         </div>
         <div class="mb-3">    
-            <input type="number" class="form-control" name="precio" value="<?=$registro['precio']?>" placeholder="Edita el precio" required>
+            <input type="number" class="form-control" name="precio" value="<?=$producto['precio']?>" placeholder="Edita el precio" required>
         </div>
         <div class="mb-3">    
-            <input type="number" class="form-control" name="stock" value="<?=$registro['stock']?>" placeholder="Edita el stock" required>
+            <input type="number" class="form-control" name="stock" value="<?=$producto['stock']?>" placeholder="Edita el stock" required>
         </div>   
 
         <button type="submit" name="update" class="btn btn-success" onclick="confirm('¿Está seguro de que desea editar el producto?')">Editar</button>

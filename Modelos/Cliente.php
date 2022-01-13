@@ -38,7 +38,7 @@ Class Cliente{
            $conexionBD = new Conexion();
            $query = "SELECT * FROM cliente WHERE id_cliente = ?";
            $sql = $conexionBD->getConexion()->prepare($query);
-           $sql->execute($id);
+           $sql->execute(array($id));
            return $sql->fetch(PDO::FETCH_ASSOC);
         }catch(Exception $e){
                echo("Ha ocurrido un error ".$e);
